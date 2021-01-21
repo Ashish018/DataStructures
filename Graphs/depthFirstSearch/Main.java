@@ -20,6 +20,7 @@ public class Main {
         int src;
         int nbr;
         int wt;
+        int abc;
 
         Edge(int src, int nbr, int wt) {
             this.src = src;
