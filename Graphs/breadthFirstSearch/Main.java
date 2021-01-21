@@ -30,7 +30,7 @@ public class Main {
 
 	static class Pair {
         int v;
-        int infectionTime; // for infection spread question only
+        int infectionTime; 
         String psf; //path so far
         Pair(int v, String psf) {
             this.v = v;
@@ -50,8 +50,6 @@ public class Main {
 		
 		//<----------------------Breadth First Search------------------------------>
         
-	      //Shortest path in terms of edges(uses queue)
-	        //r m* w a*
 	        
 		int vtces = Integer.parseInt(br.readLine());
         ArrayList < Edge > [] graph = new ArrayList[vtces];
@@ -79,19 +77,10 @@ public class Main {
 	       
 	      //<----------------------Breadth First Search------------------------------>
 	        
-	     //<------------------------- Is a Graph Cyclic?  using BFS-------------------->
-	        
-	        
-	        //To find cyclic check if we are reaching a vertice which was already visited. If yes then its cyclic 
-	        //else no
-	        
-
-	        
+	     //<------------------------- Is a Graph Cyclic?  using BFS-------------------->       
 	        ArrayDeque<Pair> cyclicBFSQueue=new ArrayDeque<Main.Pair>();
 	        boolean BFSCyclicVisited[]=new boolean[vtces];
-	     
-	        
-	        
+	    
 	        for(int i=0;i<vtces;i++)
 	        {
 	        	 if(!BFSCyclicVisited[i]) {
@@ -110,40 +99,19 @@ public class Main {
 	        
 	        
 	        
-	        
-	      //<------------------------- Is a Graph Bipartite?  --------------------> 
-	        
-	        
-	        /*
-	        A graph is called bipartite if it is possible to split it's vertices in two sets of mutually exclusive and exhaustive vertices such that all edges are across sets.
-
-			1. You are given a graph.
-			2. You are required to find and print if the graph is bipartite
-			
-			If a graph is non cyclic then it will be bipartite
-			If a graph is  cyclic of even size(number of vertices is even) then it will be bipartite else no
-			
-			Even if one component is not bipartite then whole graph is not bipartitie
-	         */
-	        
-	   
-	      //<------------------------- Is a Graph Bipartite?  --------------------> 
-	        
+	       
 	        
 	      //<------------------------- Spread Infection  --------------------> 
 	        
 	        
 	        int infectionSrc = Integer.parseInt(br.readLine());
-	        int infectionGraphTime = Integer.parseInt(br.readLine());
-	        
-	        
+	        int infectionGraphTime = Integer.parseInt(br.readLine());  
 	        System.out.println(spreadInfection(graph,infectionSrc,infectionGraphTime,vtces));
 	        
 	      //<------------------------- Spread Infection  --------------------> 
 	        
 	        
 	       //<-----------------Iterative Depth Search--------------->
-	       //Same as BFS but in this instead of recursive we are using stack
 	        
 	        int src = Integer.parseInt(br.readLine());
 	        Stack<Pair> stack=new Stack<Main.Pair>();
@@ -166,16 +134,12 @@ public class Main {
 	        	
 	        }
 	        
-	        
-	        
 	      //<-----------------Iterative Depth Search--------------->
 
 	}
 	
 	static void bfs(ArrayList<Edge>[] BFSGraph, int bFSSrc, ArrayDeque<Pair> queue, boolean[] BFSVisited)
 	{
-		////BFS is for shortest path in terms of edges
-		//r m* w a*
 		 while(!queue.isEmpty())
 	        {
 	        	Pair node=queue.remove();
@@ -196,7 +160,6 @@ public class Main {
 	
 	static boolean cyclicBFS(ArrayList<Edge>[] BFSGraph, int bFSSrc, ArrayDeque<Pair> queue, boolean[] BFSVisited)
 	{
-		//r m* w a*
 		queue.add(new Pair(bFSSrc,bFSSrc+""));
 
 		while(!queue.isEmpty())
@@ -218,20 +181,13 @@ public class Main {
 	static int spreadInfection(ArrayList < Edge > [] graph,int src,int time,int v)
 	{
 		
-		/*
-		1. You are given a graph, representing people and their connectivity.
-		2. You are also given a src person (who got infected) and time t.
-		3. You are required to find how many people will get infected in time t, 
-		   if the infection spreads to neighbors of infected person in 1 unit of time.
-		 */
-		
 		int count=0;
 		
 		boolean visited[]=new boolean[v];
 		
 		ArrayDeque<Pair> queue=new ArrayDeque<Main.Pair>();
 		
-		queue.add(new Pair(src, 1)); // In begining this is infected at t=1;
+		queue.add(new Pair(src, 1));
 		
 		while(!queue.isEmpty())
 		{
@@ -240,7 +196,7 @@ public class Main {
 			if(!visited[rem.v])
 			{
 				visited[rem.v]=true;
-				if(rem.infectionTime>time) return count; // Means time has reached
+				if(rem.infectionTime>time) return count; 
 				count++;
 				
 				for(Edge e:graph[rem.v])

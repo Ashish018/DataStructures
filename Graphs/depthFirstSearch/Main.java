@@ -59,7 +59,7 @@ public class Main {
         
         System.out.println(hasPath(graph, src, dest, new boolean[vtces]));
         
-        printPath(graph,src,dest,new boolean[vtces],Integer.toString(src),0,3); //k is kth highest weight
+        printPath(graph,src,dest,new boolean[vtces],Integer.toString(src),0,3); 
         
         ArrayList < ArrayList < Integer >> comps = new ArrayList < > ();
 
@@ -113,23 +113,7 @@ public class Main {
       //<-----------------------Island Count---------------------------------------->
         
       //<----------------------Perfect Friend-------------------------------------->
-        /*
-        1. You are given a number n (representing the number of students). Each student will have an id 
-		   from 0 to n - 1.
-		2. You are given a number k (representing the number of clubs)
-		3. In the next k lines, two numbers are given separated by a space. The numbers are ids of 
-		   students belonging to same club.
-		4. You have to find in how many ways can we select a pair of students such that both students are 
-		   from different clubs.
-		   
-		   Here number of friends is vertices and edges are bonds
-		   
-		   90% of question is of componenets find and after that its permutation and combination
-		   Let in group1 there are 2, group 2 2 and in group 3 3 students
-		   Then students of group 1(lets say 1) can be combined with group 2 with 4 ways-> student1 of group 1 in 2 ways and student2 also in
-		   2 ways. Now group1 students can combine with group3.
-		   After that group2 will combine with group3 and so on
-         */
+        
         int countFriend=0;
         for(int i=0;i<comps.size();i++){
             for(int j=i+1;j<comps.size();j++)
@@ -152,22 +136,7 @@ public class Main {
      
       //<----------------------Order Of Compilation-------------------------------------->
         
-        /*
-        1. You are given a directed acyclic graph. The vertices represent tasks and edges represent 
-		   dependencies between tasks.
-		2. You are required to find and print the order in which tasks could be done. The task that should be 
-		   done at last should be printed first and the task which should be done first should be printed last. 
-		   This is called topological sort. Check out the question video for details.
-		
-		Topological sort -> A permutation of vertices for a directed acyclic graph is called topological sort if 
-		                    for all directed edges uv, u appears before v in the graph
-		                    
-		    Here we are using finding component concept.
-		    Here we are findinding topological sort. Order of work will be opposite of topological sort
-		    To find order of work instead of where you are putting in stack just print
-         */
-        
-        
+      
         for (int i = 0; i < vtces; i++) {
             graph[i] = new ArrayList < > ();
         }
@@ -215,10 +184,9 @@ public class Main {
 
 	static boolean hasPath(ArrayList<Edge> graph[],int src,int dest,boolean[] visited)
     {
-		//we are required to check if a graph has a path from the source vertex to the destination vertex or not. 
-        if(src==dest) return true;
+	    if(src==dest) return true;
         
-        ArrayList<Edge> neighbors=graph[src]; // neighours of src vertice
+        ArrayList<Edge> neighbors=graph[src];
         visited[src]=true;
         for(Edge edge:neighbors)
         {
@@ -262,23 +230,13 @@ public class Main {
 
     }
 	
-	
-	
-	
-	
-	
 	static boolean isGraphConnected(ArrayList<ArrayList<Integer>> comps)
 	{
-		//For graph to be connected there should be only one component
 		return comps.size()==1;
 	}
 	
 	private static void getComponents(ArrayList<Edge>[] graph, int vertice, ArrayList<Integer> comp, boolean[] visited) {
 		
-		/*
-		1. You are given a graph.
-		2. You are required to find and print all connected components of the graph.
-		 */
 		comp.add(vertice);
 		visited[vertice]=true;
 		ArrayList<Edge> neighbors=graph[vertice];
@@ -286,29 +244,11 @@ public class Main {
 		{
 			if(!visited[edge.nbr]) getComponents(graph,edge.nbr,comp,visited);
 		}
-		
-
-		
+	
 	}
-	
-	
-
-
-	
-	
 	
 	static void countIslands(int arr[][],int i,int j,boolean visited[][])
 	{
-		/*
-		1. You are given a 2d array where 0's represent land and 1's represent water. 
-		Assume every cell is linked to it's north, east, west and south cell.
-		2. You are required to find and count the number of islands.
-		
-		We are using same concept that we used in component of graph where arr is virtual graph and i,j is the node
-		We are checking if cell is 0 or not. If its 0 then then its cell
-		We are not setting visited again false bcoz in for loop of main method we are going through each cell
-		so if we do it to false then it will calculate component for that cell also which would have already been calculated  
-		 */
 		
 		if(i<0 || j<0 || i>=arr.length||j>=arr[0].length||visited[i][j]||arr[i][j]==1) return;
 		
@@ -325,25 +265,12 @@ public class Main {
 	
 	 static void hamiltonianPathAndCycle(ArrayList < Edge > [] graph, int src, int dest, boolean[] visited, String psf,int orgSource) {
 	        
-		 /*
-		  
-		1. You are given a graph and a src vertex.
-		2. You are required to find and print all hamiltonian paths and cycles starting from src. The cycles must end with "*" and paths with a "."
-		
-		Note -> A hamiltonian path is such which visits all vertices without visiting any twice. A hamiltonian path becomes a cycle if there is an edge between first and last vertex.
-		Note -> Print in lexicographically increasing order.
-		
-		
-		Its same as printing all paths but base case will be when all the vertices are visited
-		and to check if its cyclic or not take out neighours of last vertice and compare with original source
-		  */
-		 
 	        int count = 0;
 	        for (boolean flag: visited) {
 	            if (flag) count++;
 	        }
 
-	        if (count == visited.length-1) { // -1 bcoz path so far is one step ahead of visited
+	        if (count == visited.length-1) { 
 	            
 	            
 	            boolean cyclic=false;

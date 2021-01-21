@@ -31,7 +31,7 @@ public class Main {
 	static class Pair implements Comparable<Pair>{
         int v;
         String psf; //path so far
-        int wsf;//weight so far(for dijkstra algorithm)
+        int wsf;//weight so far
         
 		
 		Pair(int v, int wsf,String psf) { 
@@ -55,8 +55,6 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
          
-	      //Shortest path in terms of weight(uses priority queue)
-	        //r m* w a*
 	        
 	        int vertices = Integer.parseInt(br.readLine());
 	        ArrayList < Edge > [] graph = new ArrayList[vertices];

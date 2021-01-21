@@ -21,7 +21,7 @@ public class Main {
     static class Pair implements Comparable < Pair > {
         int v;
         int wt; // weight 
-        int av; // acquiring vertice 
+        int av; 
 
         public Pair(int v, int av, int wt) {
             super();
@@ -40,9 +40,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
     	
-    	/*
-    	 Almost same as dijknatra
-    	 */
     	
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
